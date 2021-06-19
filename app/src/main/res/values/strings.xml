@@ -4,4 +4,7 @@
     <string name="app_subtitle">Test language words</string>
     <string name="button_login">Login</string>
     <string name="button_register">Register</string>
+    <string name="login_title">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
 </resources>

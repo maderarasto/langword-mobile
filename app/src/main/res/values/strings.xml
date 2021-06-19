@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Langword Mobile</string>
+    <string name="app_title">Langword</string>
+    <string name="app_subtitle">Test language words</string>
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import com.android.volley.Request
 import com.maderarasto.langwordmobile.utils.JsonRequestQueue
+import com.maderarasto.langwordmobile.utils.Preferences
 import com.maderarasto.langwordmobile.views.ValidatableEdit
 import org.json.JSONObject
 
@@ -36,7 +37,11 @@ class LoginActivity : AppCompatActivity() {
 
         JsonRequestQueue.getInstance(this).requestJsonObject(Request.Method.POST, url, data, headers,
             { response ->
-                Log.i("LoginActivity", response.toString())
+                Preferences.getInstance(this).accessToken = response.getString("access_token")
+
+                val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
+                val intent = Intent(this, DashboardActivity::class.java)
+                startActivity(intent, activityOptions.toBundle())
             }, { error ->
                 val errorData = JSONObject(String(error.networkResponse.data))
                 Log.e("LoginActivity", errorData.getString("message"))

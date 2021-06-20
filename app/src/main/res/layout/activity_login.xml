@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="36dp"
     tools:context=".LoginActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme"/>
     <TextView
         android:id="@+id/app_title"
         android:layout_width="wrap_content"
@@ -32,6 +36,7 @@
         android:layout_marginBottom="96dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:paddingHorizontal="36dp"
         android:orientation="vertical">
         <com.maderarasto.langwordmobile.views.ValidatableEdit
             android:id="@+id/edit_email"

@@ -15,6 +15,15 @@ import com.maderarasto.langwordmobile.R
  */
 class ValidatableEdit(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     var errorText: String = ""
+    var text: String
+        get() {
+            val editText: EditText = findViewById(R.id.inner_edit_text)
+            return editText.text.toString()
+        }
+        set(value) {
+            val editText: EditText = findViewById(R.id.inner_edit_text)
+            editText.setText(value)
+        }
 
     init {
         inflate(context, R.layout.validatable_edit, this)

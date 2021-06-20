@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_100">#38DB9C</color>
     <color name="green_200">#008860</color>
-    <color name="shadow">#60000000</color>
+    <color name="shadow">#f0008860</color>
     <color name="transparent">#00000000</color>
     <color name="light_blue_400">#FF29B6F6</color>
     <color name="light_blue_600">#FF039BE5</color>

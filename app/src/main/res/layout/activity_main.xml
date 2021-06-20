@@ -48,14 +48,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_login"
-            android:textColor="@color/green_200"
+            android:textColor="@color/green_100"
             android:backgroundTint="@color/white"
             android:onClick="onLoginClicked"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_register"
-            android:textColor="@color/green_200"
+            android:textColor="@color/green_100"
             android:backgroundTint="@color/white"
             android:onClick="onRegisterClicked"/>
     </LinearLayout>

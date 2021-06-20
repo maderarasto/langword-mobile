@@ -18,4 +18,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent, activityOptions.toBundle());
     }
+
+    fun onRegisterClicked(view: View) {
+        val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent, activityOptions.toBundle());
+    }
 }

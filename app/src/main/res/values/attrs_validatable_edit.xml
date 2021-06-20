@@ -1,0 +1,20 @@
+<resources>
+    <declare-styleable name="ValidatableEdit">
+        <attr name="text" format="string" />
+        <attr name="inputType">
+            <flag name="text" value="0x00000001" />
+            <flag name="capChars" value="0x00001000" />
+            <flag name="capWords" value="0x00002000" />
+            <flag name="multiLine" value="0x00020000" />
+            <flag name="email" value="0x00000020" />
+            <flag name="password" value="0x00000080" />
+            <flag name="visiblePassword" value="0x00000090" />
+            <flag name="number" value="0x00000002" />
+            <flag name="numberSigned" value="0x00001000" />
+            <flag name="numberDecimal" value="0x00002000" />
+            <flag name="numberPassword" value="0x00000010" />
+        </attr>
+        <attr name="hint" format="string" />
+        <attr name="error" format="string" />
+    </declare-styleable>
+</resources>

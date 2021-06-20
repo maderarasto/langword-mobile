@@ -33,26 +33,21 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-        <EditText
+        <com.maderarasto.langwordmobile.views.ValidatableEdit
+            android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:inputType="textEmailAddress"
-            android:autofillHints="email"
-            android:background="@drawable/edit_text"
-            android:hint="@string/hint_email"/>
-        <EditText
+            app:hint="Email"/>
+        <com.maderarasto.langwordmobile.views.ValidatableEdit
+            android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:inputType="textPassword"
-            android:importantForAutofill="no"
-            android:hint="@string/hint_password"
-            android:background="@drawable/edit_text" />
+            app:inputType="password"
+            app:hint="Password"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_title"
+            android:text="@string/button_login"
             android:onClick="onLoginSubmit"/>
     </LinearLayout>
 </RelativeLayout>

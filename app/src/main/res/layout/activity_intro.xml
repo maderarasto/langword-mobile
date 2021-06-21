@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".IntroActivity"
     android:background="@drawable/home_gradient">
     <LinearLayout
         android:id="@+id/layout_title"
@@ -37,12 +37,26 @@
             android:shadowRadius="5"
             android:textAllCaps="true" />
     </LinearLayout>
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:indeterminateDrawable="@drawable/progress_circular"/>
+        android:paddingHorizontal="24dp"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login"
+            android:textColor="@color/green_100"
+            android:backgroundTint="@color/white"
+            android:onClick="onLoginClicked"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_register"
+            android:textColor="@color/green_100"
+            android:backgroundTint="@color/white"
+            android:onClick="onRegisterClicked"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LangwordMobile"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".IntroActivity"></activity>
+        <activity android:name=".DashboardActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

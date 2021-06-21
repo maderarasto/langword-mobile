@@ -3,7 +3,6 @@ package com.maderarasto.langwordmobile.views
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -36,21 +35,21 @@ class ValidatableEdit(context: Context, attrs: AttributeSet) : LinearLayout(cont
         editText.inputType = getFlagsCombination(attributes.getInt(R.styleable.ValidatableEdit_inputType, InputType.TYPE_CLASS_TEXT))
         editText.hint = attributes.getString(R.styleable.ValidatableEdit_hint)
 
-        attributes.recycle();
+        attributes.recycle()
     }
 
     fun showValidationError() {
         val validationError: TextView = findViewById(R.id.validation_error)
 
-        validationError.text = "Error: $errorText";
-        validationError.visibility = View.VISIBLE;
+        validationError.text = errorText
+        validationError.visibility = View.VISIBLE
     }
 
     fun hideValidationError() {
-        val validationError: TextView = findViewById(R.id.validation_error);
+        val validationError: TextView = findViewById(R.id.validation_error)
 
-        validationError.text = "";
-        validationError.visibility = View.GONE;
+        validationError.text = ""
+        validationError.visibility = View.GONE
     }
 
     private fun getFlagsCombination(flag: Int): Int {

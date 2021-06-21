@@ -13,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LangwordMobile"
         android:usesCleartextTraffic="true">
-        <activity android:name=".IntroActivity"></activity>
-        <activity android:name=".DashboardActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -26,13 +24,19 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".IntroActivity"
+            android:parentActivityName=".IntroActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".IntroActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".IntroActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DashboardActivity"
             android:screenOrientation="portrait" />
     </application>
-
 </manifest>

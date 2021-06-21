@@ -38,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
     fun onRegisterSubmit(view: View) {
         val inputManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(view.windowToken, 0)
+        clearErrorMessages()
 
         val editName: ValidatableEdit = findViewById(R.id.edit_name)
         val editEmail: ValidatableEdit = findViewById(R.id.edit_email)
@@ -92,5 +93,9 @@ class RegisterActivity : AppCompatActivity() {
         val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent, activityOptions.toBundle())
+    }
+
+    private fun clearErrorMessages() {
+        editBindings.forEach { iterator -> iterator.value.hideValidationError() }
     }
 }

@@ -8,4 +8,5 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="preferences_key">com.maderarasto.langwordmobile</string>
+    <string name="action_logout">Logout</string>
 </resources>

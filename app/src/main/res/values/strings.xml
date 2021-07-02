@@ -9,4 +9,8 @@
     <string name="hint_password">Password</string>
     <string name="preferences_key">com.maderarasto.langwordmobile</string>
     <string name="action_logout">Logout</string>
+    <string name="add_topic_icon_description">Add Topic Icon</string>
+    <string name="add_first_topic">Add First Topic</string>
+    <string name="default_text">Default</string>
+    <string name="default_words">0 words</string>
 </resources>

@@ -31,22 +31,33 @@ class TopicService(context: Context, private val apiUrl: String) {
         Preferences.getInstance(context)
     }
 
-    fun get(responseListener: TopicListResponse, onError: ErrorResponse) {
-        val url = "$apiUrl/"
+    fun get(onResponse: TopicListResponse, onError: ErrorResponse) {
         val headers = HashMap<String, String>()
 
         headers["Content-Type"] = "application/json"
         headers["Accept"] = "application/json"
         headers["Authorization"] = "Bearer ${preferences.accessToken}"
 
-        requestQueue.requestJsonArray(Request.Method.GET, url, JSONArray(), headers, { response ->
+        requestQueue.requestJsonArray(Request.Method.GET, apiUrl, JSONArray(), headers, { response ->
             val topicList = ArrayList<Topic>()
 
             for (i in 0 until response.length()) {
                 topicList.add(Topic.fromJSON(response[i] as JSONObject))
             }
 
-            responseListener.onResponse(topicList)
+            onResponse.onResponse(topicList)
+        }, onError)
+    }
+
+    fun store(topicData: JSONObject, onResponse: TopicResponse, onError: ErrorResponse) {
+        val headers = HashMap<String, String>()
+
+        headers["Content-Type"] = "application/json"
+        headers["Accept"] = "application/json"
+        headers["Authorization"] = "Bearer ${preferences.accessToken}"
+
+        requestQueue.requestJsonObject(Request.Method.POST, apiUrl, topicData, headers, { response ->
+            onResponse.onResponse(Topic.fromJSON(response))
         }, onError)
     }
 }

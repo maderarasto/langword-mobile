@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.android.volley.Request
+import com.android.volley.Response
+import com.maderarasto.langwordmobile.services.AuthService
 import com.maderarasto.langwordmobile.utils.JsonRequestQueue
 import com.maderarasto.langwordmobile.utils.Preferences
 import com.maderarasto.langwordmobile.views.ValidatableEdit
@@ -45,38 +47,14 @@ class RegisterActivity : AppCompatActivity() {
         val editPassword: ValidatableEdit = findViewById(R.id.edit_password)
         val editPassConfirm: ValidatableEdit = findViewById(R.id.edit_password_confirm)
 
-        val url = "http://langword-api.herokuapp.com/api/auth/register"
         val data = JSONObject()
-        val headers = HashMap<String, String>()
-        headers["Content-Type"] = "application/json"
-        headers["Accept"] = "application/json"
 
         data.put("name", editName.text)
         data.put("email", editEmail.text)
         data.put("password", editPassword.text)
         data.put("password_confirmation", editPassConfirm.text)
 
-        JsonRequestQueue.getInstance(this).requestJsonObject(
-            Request.Method.POST, url, data, headers,
-            { response ->
-                Preferences.getInstance(this).accessToken = response.getString("access_token")
-
-                val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
-                val intent = Intent(this, DashboardActivity::class.java)
-                startActivity(intent, activityOptions.toBundle())
-            }, { error ->
-                val errorData = JSONObject(String(error.networkResponse.data))
-                val errorMessages: JSONObject = errorData.getJSONObject("errors")
-
-                Log.e("RegisterActivity", errorData.getString("message"))
-                Log.e("RegisterActivity", errorData.toString())
-
-                errorMessages.keys().forEach { key ->
-                    editBindings[key]?.errorText = errorMessages.getJSONArray(key)[0].toString()
-                    editBindings[key]?.showValidationError()
-                }
-            }
-        )
+        AuthService.getInstance(this).register(data, onRegisterResponse(), onRegisterError())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -97,5 +75,30 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun clearErrorMessages() {
         editBindings.forEach { iterator -> iterator.value.hideValidationError() }
+    }
+
+    private fun onRegisterResponse() : Response.Listener<JSONObject> {
+        return Response.Listener { response ->
+            Preferences.getInstance(this).accessToken = response.getString("access_token")
+
+            val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent, activityOptions.toBundle())
+        }
+    }
+
+    private fun onRegisterError() : Response.ErrorListener {
+        return Response.ErrorListener { error ->
+            val errorData = JSONObject(String(error.networkResponse.data))
+            val errorMessages: JSONObject = errorData.getJSONObject("errors")
+
+            Log.e("RegisterActivity", errorData.getString("message"))
+            Log.e("RegisterActivity", errorData.toString())
+
+            errorMessages.keys().forEach { key ->
+                editBindings[key]?.errorText = errorMessages.getJSONArray(key)[0].toString()
+                editBindings[key]?.showValidationError()
+            }
+        }
     }
 }

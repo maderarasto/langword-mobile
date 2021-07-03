@@ -9,7 +9,7 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
 
-class JsonRequestQueue constructor(context: Context) {
+class  JsonRequestQueue constructor(context: Context) {
     companion object {
         @Volatile
         private var INSTANCE: JsonRequestQueue? = null

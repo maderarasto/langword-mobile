@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.android.volley.Request
+import com.android.volley.Response
+import com.maderarasto.langwordmobile.services.AuthService
 import com.maderarasto.langwordmobile.utils.JsonRequestQueue
 import com.maderarasto.langwordmobile.utils.Preferences
 import org.json.JSONObject
@@ -17,28 +19,27 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
-        val url = "http://langword-api.herokuapp.com/api/auth/user"
-        val headers = HashMap<String, String>()
-        headers["Content-Type"] = "application/json"
-        headers["Accept"] = "application/json"
-        headers["Authorization"] = "Bearer ${Preferences.getInstance(this).accessToken}"
+        AuthService.getInstance(this).authUser(onAuthUserResponse(), onAuthUserError())
+    }
 
-        JsonRequestQueue.getInstance(this).requestJsonObject(
-            Request.Method.GET, url, null, headers,
-            {
+    private fun onAuthUserResponse() : Response.Listener<JSONObject> {
+        return Response.Listener {
+            val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent, activityOptions.toBundle())
+        }
+    }
+
+    private fun onAuthUserError() : Response.ErrorListener {
+        return Response.ErrorListener { error ->
+            val errorData = JSONObject(String(error.networkResponse.data))
+            Log.e("MainActivity", errorData.getString("message"))
+
+            if (error.networkResponse.statusCode == 401) {
                 val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
-                val intent = Intent(this, DashboardActivity::class.java)
+                val intent = Intent(this, IntroActivity::class.java)
                 startActivity(intent, activityOptions.toBundle())
-            }, { error ->
-                val errorData = JSONObject(String(error.networkResponse.data))
-                Log.e("MainActivity", errorData.getString("message"))
-
-                if (error.networkResponse.statusCode == 401) {
-                    val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this);
-                    val intent = Intent(this, IntroActivity::class.java)
-                    startActivity(intent, activityOptions.toBundle())
-                }
             }
-        )
+        }
     }
 }

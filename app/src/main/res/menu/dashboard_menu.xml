@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_item_add_topic"
-        android:title="Add Topic"
+        android:id="@+id/menu_item_create_topic"
+        android:title="@string/create_topic_title"
         android:icon="@drawable/ic_add_circle_green_outline_24"
         app:showAsAction="ifRoom" />
     <item

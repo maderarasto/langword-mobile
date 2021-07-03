@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateTopicActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/green_100"
+        android:theme="@style/ToolbarTheme"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <com.maderarasto.langwordmobile.views.ValidatableEdit
+            android:id="@+id/edit_topic_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hint="Topic Name"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Topic Words"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:textAllCaps="true"
+            android:textColor="@color/green_100"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/create_topic_title"
+        android:onClick="onCreateTopicSubmit"/>
+</RelativeLayout>

@@ -14,4 +14,6 @@
     <string name="default_text">Default</string>
     <string name="default_words">0 words</string>
     <string name="create_topic_title">Create Topic</string>
+    <string name="edit_topic_title">Edit Topic</string>
+    <string name="delete_topic_title">Delete Topic</string>
 </resources>

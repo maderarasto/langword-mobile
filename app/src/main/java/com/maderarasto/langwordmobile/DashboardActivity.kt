@@ -17,11 +17,15 @@ import android.view.View
 import android.util.Log
 import android.app.ActivityOptions
 import android.os.Bundle
+import android.widget.Toast
 
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
+        if (intent.hasExtra("message"))
+            Toast.makeText(this, intent.getStringExtra("message"), Toast.LENGTH_LONG).show()
 
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
 
@@ -60,6 +64,7 @@ class DashboardActivity : AppCompatActivity() {
             val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this)
             val intent = Intent(this, TopicActivity::class.java)
 
+            intent.putExtra("topicId", topic.id)
             intent.putExtra("topicName", topic.name)
 
             startActivity(intent, activityOptions.toBundle())

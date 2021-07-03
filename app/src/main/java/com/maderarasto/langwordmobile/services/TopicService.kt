@@ -49,6 +49,19 @@ class TopicService(context: Context, private val apiUrl: String) {
         }, onError)
     }
 
+    fun find(id: Long, onResponse: TopicResponse, onError: ErrorResponse) {
+        val url = "$apiUrl/$id"
+        val headers = HashMap<String, String>()
+
+        headers["Content-Type"] = "application/json"
+        headers["Accept"] = "application/json"
+        headers["Authorization"] = "Bearer ${preferences.accessToken}"
+
+        requestQueue.requestJsonObject(Request.Method.GET, url, JSONObject(), headers, { response ->
+            onResponse.onResponse(Topic.fromJSON(response))
+        }, onError)
+    }
+
     fun store(topicData: JSONObject, onResponse: TopicResponse, onError: ErrorResponse) {
         val headers = HashMap<String, String>()
 
@@ -59,5 +72,16 @@ class TopicService(context: Context, private val apiUrl: String) {
         requestQueue.requestJsonObject(Request.Method.POST, apiUrl, topicData, headers, { response ->
             onResponse.onResponse(Topic.fromJSON(response))
         }, onError)
+    }
+
+    fun delete(id: Long, onResponse: JSONObjectResponse, onError: ErrorResponse) {
+        val url = "$apiUrl/$id"
+        val headers = HashMap<String, String>()
+
+        headers["Content-Type"] = "application/json"
+        headers["Accept"] = "application/json"
+        headers["Authorization"] = "Bearer ${preferences.accessToken}"
+
+        requestQueue.requestJsonObject(Request.Method.DELETE, url, JSONObject(), headers, onResponse, onError)
     }
 }

@@ -53,7 +53,7 @@ class CreateTopicActivity : AppCompatActivity() {
             val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this)
             val intent = Intent(this, DashboardActivity::class.java)
 
-            intent.putExtra("message", "Successfully created topic with name '${topic.name}'")
+            intent.putExtra("message", "Created Topic ${topic.name}")
 
             startActivity(intent, activityOptions.toBundle())
         }

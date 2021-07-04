@@ -74,6 +74,19 @@ class TopicService(context: Context, private val apiUrl: String) {
         }, onError)
     }
 
+    fun update(topic: Topic, onResponse: TopicResponse, onError: ErrorResponse) {
+        val url = "$apiUrl/${topic.id}"
+        val headers = HashMap<String, String>()
+
+        headers["Content-Type"] = "application/json"
+        headers["Accept"] = "application/json"
+        headers["Authorization"] = "Bearer ${preferences.accessToken}"
+
+        requestQueue.requestJsonObject(Request.Method.PUT, url, topic.toJSON(arrayOf("id")), headers, { response ->
+            onResponse.onResponse(Topic.fromJSON(response))
+        }, onError)
+    }
+
     fun delete(id: Long, onResponse: JSONObjectResponse, onError: ErrorResponse) {
         val url = "$apiUrl/$id"
         val headers = HashMap<String, String>()

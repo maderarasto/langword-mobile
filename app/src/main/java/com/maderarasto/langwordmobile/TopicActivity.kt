@@ -37,6 +37,12 @@ class TopicActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_item_edit_topic) {
+            val activityOptions = ActivityOptions.makeSceneTransitionAnimation(this)
+            val intent = Intent(this, EditTopicActivity::class.java)
+
+            intent.putExtra("topicId", topic?.id)
+
+            startActivity(intent, activityOptions.toBundle())
         } else if (item.itemId == R.id.menu_item_delete_topic) {
             val dialogBuilder = AlertDialog.Builder(this)
 
@@ -86,7 +92,7 @@ class TopicActivity : AppCompatActivity() {
                 intent.putExtra("message", "Deleted topic")
 
                 startActivity(intent, activityOptions.toBundle())
-            }, onTopicFindError())
+            }, onDeleteTopicError())
         }
     }
 

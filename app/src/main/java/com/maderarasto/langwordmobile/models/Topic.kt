@@ -2,7 +2,7 @@ package com.maderarasto.langwordmobile.models
 
 import org.json.JSONObject
 
-class Topic (val id: Long, val name: String) {
+class Topic (val id: Long, var name: String) {
 
     companion object {
         fun fromJSON(json: JSONObject) : Topic {
@@ -13,11 +13,13 @@ class Topic (val id: Long, val name: String) {
         }
     }
 
-    fun toJSON(): JSONObject {
+    fun toJSON(except: Array<String>): JSONObject {
         val json = JSONObject()
 
-        json.put("id", id)
-        json.put("name", name)
+        if (!except.contains("id"))
+            json.put("id", id)
+        if (!except.contains("name"))
+            json.put("name", name)
 
         return json;
     }
